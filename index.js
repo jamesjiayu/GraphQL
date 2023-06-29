@@ -10,6 +10,12 @@ type Account{
   age:Int,
   location: String,
 }
+type Film{
+  id:Int,
+  name:String,
+  poster:String,
+  price:Int
+}
   type Query {
     hello: String,
     getName: String,
@@ -17,9 +23,29 @@ type Account{
     getAllNames:[String],
     getAllAges:[Int],
     getAccountInfo: Account,
+    getNowPlayingList:[Film] 
   }
 `);
-
+let fakeDB = [
+  {
+    id: 1,
+    name: 'j',
+    poster: 'http://111',
+    price: 199,
+  },
+  {
+    id: 2,
+    name: 'j',
+    poster: 'http://111',
+    price: 299,
+  },
+  {
+    id: 3,
+    name: 'j',
+    poster: 'http://111',
+    price: 99,
+  },
+];
 // The root provides a resolver function for each API endpoint
 var root = {
   hello: () => {
@@ -33,6 +59,9 @@ var root = {
   getAllAges: () => [18, 19, 99],
   getAccountInfo: () => {
     return { name: 'Jim', age: 18, location: 'Dallas, TX' };
+  },
+  getNowPlayingList() {
+    return fakeDB;
   },
 };
 
