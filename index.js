@@ -23,7 +23,8 @@ type Film{
     getAllNames:[String],
     getAllAges:[Int],
     getAccountInfo: Account,
-    getNowPlayingList:[Film] 
+    getNowPlayingList:[Film] ,
+    getFilmDetails(id:Int!):Film,
   }
 `);
 let fakeDB = [
@@ -62,6 +63,9 @@ var root = {
   },
   getNowPlayingList() {
     return fakeDB;
+  },
+  getFilmDetails({ id }) {
+    return fakeDB.filter((item) => item.id === id)[0]; //return Film, not []
   },
 };
 
