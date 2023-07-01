@@ -16,6 +16,11 @@ type Film{
   poster:String,
   price:Int
 }
+input FilmInput{
+  name:String,
+  poster:String,
+  price:Int
+}
   type Query {
     hello: String,
     getName: String,
@@ -23,8 +28,13 @@ type Film{
     getAllNames:[String],
     getAllAges:[Int],
     getAccountInfo: Account,
-    getNowPlayingList:[Film] ,
+    getNowPlayingList:[Film],
     getFilmDetails(id:Int!):Film,
+  }
+  type Mutation {
+      createFilm(input: FilmInput):Film,
+      updateFilm(id:Int!,input:FilmInput):Film,
+      deleteFilm(id:Int!):Int
   }
 `);
 let fakeDB = [
@@ -49,8 +59,26 @@ let fakeDB = [
 ];
 // The root provides a resolver function for each API endpoint
 var root = {
-  hello: () => {
-    return 'Hello, world!!!';
+  createFilm({ input }) {
+    let obj = { ...input, id: fakeDB.length + 1 };
+    fakeDB.push(obj);
+    return obj;
+  },
+  updateFilm({ id, input }) {
+    // console.log(id, input);
+    let current = null;
+    fakeDB = fakeDB.map((item) => {
+      if (item.id === id) {
+        current = { ...item, ...input };
+        return { ...item, ...input };
+      }
+      return item;
+    });
+    return current;
+  },
+  deleteFilm({ id }) {
+    fakeDB.filter((item) => item.id !== id);
+    return 1; //success
   },
   getName: () => 'getName: Jim',
   getAge() {
