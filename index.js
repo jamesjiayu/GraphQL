@@ -1,10 +1,11 @@
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
+const mongoose = require('mongoose');
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri =
   'mongodb+srv://j:w@clusterj.sobzoi2.mongodb.net/?retryWrites=true&w=majority';
-//passwd forgotten.... w
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
