@@ -9,6 +9,7 @@
         "nodemon": "^2.0.7"
     },
     "devDependencies": {
+        "json-graphql-server": "^2.3.2",
         "mongodb": "^5.6.0",
         "mongoose": "^7.3.1"
     }
