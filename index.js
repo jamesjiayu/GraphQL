@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
-
 type Account{
   name: String,
   age:Int,
