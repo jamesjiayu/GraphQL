@@ -2,7 +2,6 @@ var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
-
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
 type Account{
