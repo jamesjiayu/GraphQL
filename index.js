@@ -39,7 +39,7 @@ input FilmInput{
 let fakeDB = [
   {
     id: 1,
-    name: 'j',
+    name: 'jw',
     poster: 'http://111',
     price: 199,
   },
